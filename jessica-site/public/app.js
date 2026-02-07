@@ -171,7 +171,8 @@
       }
 
       var data = await response.json();
-      appendMessage("jessica", data.reply);
+      var reply = data.reply || "I didn't get a response — try again in a moment.";
+      appendMessage("jessica", reply);
     } catch (error) {
       console.error("Chat error:", error);
       appendMessage(

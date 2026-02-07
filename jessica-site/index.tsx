@@ -44,9 +44,15 @@ app.post("/chat", async (c) => {
 
     const data: any = await response.json();
 
-    return c.json({
-      reply: data.reply || data.response || data.message || data.content,
-    });
+    const reply =
+      data.reply || data.response || data.message || data.content || null;
+
+    if (!reply) {
+      console.error("Zo API returned no usable reply field:", data);
+      return c.json({ error: "No reply received from AI" }, 502);
+    }
+
+    return c.json({ reply });
   } catch (error) {
     console.error("Chat API error:", error);
     return c.json({ error: "Failed to process chat request" }, 500);
