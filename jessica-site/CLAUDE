@@ -1,0 +1,48 @@
+Jessica – Cognitive Interface (Zo Computer Site)
+=================================================
+
+This is the Zo-native frontend for Jessica, an ADHD-optimized cognitive
+prosthetic AI chat interface.
+
+Architecture
+------------
+- index.tsx   → Hono server. SSR renders the initial HTML page, serves
+                static assets from /public, and proxies chat requests to
+                the Zo AI backend via POST /chat.
+- public/app.js → Vanilla JavaScript client. Manages chat state, DOM
+                   updates, context switching, typing indicator, and
+                   auto-scroll. No frameworks – pure DOM manipulation.
+- Tailwind CSS via CDN (Play version) – no build step needed.
+- Google Fonts "Inter" for typography.
+
+Routes
+------
+GET  /          → Serves the full chat UI (server-rendered HTML).
+POST /chat      → Accepts { message, context, history } and returns
+                  { reply }. Proxies to Zo's /zo/ask API.
+/public/*       → Static file serving (app.js, future assets).
+
+Environment Variables
+---------------------
+ZO_API_KEY  – API key for Zo AI backend (has a built-in fallback).
+ZO_API_URL  – Full URL for the AI endpoint
+              (default: https://api.zo.computer/zo/ask).
+
+Design Principles
+-----------------
+- ADHD-optimized: dark theme, minimal cognitive load, single-column layout.
+- User messages → blue (bg-blue-600), Jessica messages → emerald (bg-emerald-700).
+- Three context modes: Personal, Business, Creative (context switcher in header).
+- Typing indicator with bouncing dots during API calls.
+- Auto-scroll to newest message.
+- Mobile responsive – works on phones and tablets.
+
+Development
+-----------
+  bun install
+  bun run dev        # starts with hot reload on http://localhost:3000
+
+Deployment
+----------
+Upload this folder as a Zo Computer site. It will be available at
+jessica-*.zocomputer.io once published.

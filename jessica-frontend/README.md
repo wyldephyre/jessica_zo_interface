@@ -29,8 +29,23 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment (Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This app is deployed on [Vercel](https://vercel.com). To deploy or update:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Connect the repo**  
+   In the [Vercel dashboard](https://vercel.com/new), import the GitHub repo. Set the **Framework Preset** to **Next.js**.
+
+2. **Root directory**  
+   If the repo root contains multiple folders, set **Root Directory** to `jessica-frontend`.
+
+3. **Environment variables**  
+   In the project **Settings → Environment Variables**, add:
+   - `ZO_API_KEY` — Your Zo Computer API key
+   - `ZO_API_URL` — `https://api.zo.computer/zo/ask`  
+   Enable for Production (and Preview if you want). Save and **Redeploy** so new variables take effect.
+
+4. **Redeploy**  
+   After changing env vars or root directory: **Deployments** → ⋮ on the latest deployment → **Redeploy**.
+
+The chat API route (`/api/chat`) uses these variables server-side; they are not exposed to the client.

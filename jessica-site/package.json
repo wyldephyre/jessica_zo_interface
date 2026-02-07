@@ -1,0 +1,10 @@
+{
+  "name": "jessica-site",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot index.tsx"
+  },
+  "dependencies": {
+    "hono": "^4"
+  }
+}
