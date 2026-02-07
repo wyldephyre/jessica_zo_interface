@@ -1,0 +1,10 @@
+{
+  "name": "jessica_zo_interface",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jessica cognitive interface — frontend and backend",
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix jessica-frontend",
+    "dev:backend": "npm run dev --prefix jessica-backend"
+  }
+}
